@@ -23,11 +23,23 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Build
+    - name: Build for GitHub Pages
       run: |
+        cat > vite.config.ts << 'EOF'
+        import { defineConfig } from 'vite'
+        import vue from '@vitejs/plugin-vue'
+        
+        export default defineConfig({
+          plugins: [vue()],
+          base: '/medical-prescription-form/',
+          resolve: {
+            alias: {
+              '@': '/src'
+            }
+          }
+        })
+        EOF
         npm run build
-        # 修复GitHub Pages的路径问题
-        sed -i 's|="/assets/|="/medical-prescription-form/assets/|g' dist/index.html
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
