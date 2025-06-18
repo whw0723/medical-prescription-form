@@ -1,19 +1,11 @@
 <template>
   <div id="app">
-    <h1>测试页面</h1>
-    <p>如果你能看到这个页面，说明Vue应用加载成功</p>
-    <el-button type="primary" @click="showMessage">点击测试Element Plus</el-button>
     <PrescriptionForm />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
 import PrescriptionForm from './components/PrescriptionForm.vue'
-
-const showMessage = () => {
-  ElMessage.success('Element Plus 工作正常！')
-}
 </script>
 
 <style>
@@ -31,16 +23,6 @@ const showMessage = () => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-h1 {
-  color: #409EFF;
-  margin-bottom: 20px;
-}
-
-p {
-  margin-bottom: 20px;
-  font-size: 16px;
 }
 
 /* Element Plus 全局样式覆盖 */
