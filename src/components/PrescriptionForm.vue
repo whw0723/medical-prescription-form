@@ -6,7 +6,7 @@
           <span>添加处方</span>
           <div class="shortcut-tips">
             <span class="tip-text">
-              Tab(填写信息) Shift+Tab(返回上一项) Alt+I(打开药品录入) ESC(关闭药品录入) Alt+D(删除最后药品) Alt+Enter(提交处方) Alt+R(重置表单)
+              Tab(填写信息) Shift+Tab(返回上一项) Alt+I(打开药品录入) ESC(关闭药品录入) Alt+D(删除最后药品) Ctrl+Enter(提交处方) Alt+R(重置表单)
             </span>
           </div>
         </div>
@@ -146,8 +146,8 @@ const resetForm = () => {
 
 // 键盘事件处理
 const handleKeyDown = (event: KeyboardEvent) => {
-  // Alt + Enter 键提交表单
-  if (event.altKey && event.key === 'Enter') {
+  // Ctrl + Enter 键提交表单
+  if (event.ctrlKey && event.key === 'Enter') {
     event.preventDefault()
     submitForm()
   }

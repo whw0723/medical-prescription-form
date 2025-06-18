@@ -10,7 +10,7 @@
           @keydown.enter="handleSubmit"
           @keydown.space.prevent="handleSubmit"
         >
-          立即提交 (Alt+Enter)
+          立即提交 (Ctrl+Enter)
         </el-button>
         <el-button 
           @click="handleReset"
