@@ -10,52 +10,151 @@
           <span v-else>{{ row.sequence }}</span>
         </template>
       </el-table-column>
+      
       <el-table-column prop="name" label="饮片编号" min-width="120">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.name }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.name" 
+            size="small"
+            placeholder="编号"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
-      <el-table-column prop="chineseName" label="饮片名称" min-width="100">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.chineseName }}</span>
+      
+      <el-table-column prop="chineseName" label="饮片名称" min-width="120">
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.chineseName" 
+            size="small"
+            placeholder="名称"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
+      
+      <el-table-column prop="mnemonicCode" label="助记码" min-width="100">
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.mnemonicCode" 
+            size="small"
+            placeholder="助记码"
+            @input="updateMedicine($index)"
+          />
+        </template>
+      </el-table-column>
+      
       <el-table-column prop="specification" label="规格" min-width="80">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.specification }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.specification" 
+            size="small"
+            placeholder="规格"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
+      
       <el-table-column prop="singleDose" label="单剂量" min-width="80">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.singleDose }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.singleDose" 
+            size="small"
+            placeholder="单剂量"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
+      
       <el-table-column prop="totalAmount" label="贴数/剂数" min-width="100">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.totalAmount }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.totalAmount" 
+            size="small"
+            placeholder="贴数"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
+      
       <el-table-column prop="totalQuantity" label="总剂量" min-width="80">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.totalQuantity }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="!row.isTotal">
+            <el-input 
+              v-model="row.totalQuantity" 
+              size="small"
+              placeholder="总剂量"
+              @input="updateMedicine($index)"
+            />
+          </span>
           <span v-else style="font-weight: bold; color: #E6A23C;">{{ totalQuantitySum }}</span>
         </template>
       </el-table-column>
+      
       <el-table-column prop="unit" label="单位" min-width="60">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.unit }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-select 
+            v-else
+            v-model="row.unit" 
+            size="small"
+            placeholder="单位"
+            @change="updateMedicine($index)"
+          >
+            <el-option label="g" value="g" />
+            <el-option label="ml" value="ml" />
+            <el-option label="粒" value="粒" />
+            <el-option label="片" value="片" />
+            <el-option label="包" value="包" />
+          </el-select>
         </template>
       </el-table-column>
+      
       <el-table-column prop="usage" label="脚注" min-width="80">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.usage }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-select 
+            v-else
+            v-model="row.usage" 
+            size="small"
+            placeholder="脚注"
+            @change="updateMedicine($index)"
+          >
+            <el-option label="常规" value="常规" />
+            <el-option label="先煎" value="先煎" />
+            <el-option label="后下" value="后下" />
+            <el-option label="包煎" value="包煎" />
+            <el-option label="冲服" value="冲服" />
+            <el-option label="烊化" value="烊化" />
+          </el-select>
         </template>
       </el-table-column>
+      
       <el-table-column prop="unitPrice" label="货位" min-width="80">
-        <template #default="{ row }">
-          <span v-if="!row.isTotal">{{ row.unitPrice }}</span>
+        <template #default="{ row, $index }">
+          <span v-if="row.isTotal"></span>
+          <el-input 
+            v-else
+            v-model="row.unitPrice" 
+            size="small"
+            placeholder="货位"
+            @input="updateMedicine($index)"
+          />
         </template>
       </el-table-column>
+      
       <el-table-column label="操作" width="80" align="center">
         <template #default="{ row, $index }">
           <el-button 
@@ -63,9 +162,6 @@
             type="danger" 
             size="small" 
             @click="handleRemoveMedicine($index)"
-            :tabindex="0"
-            @keydown.enter="handleRemoveMedicine($index)"
-            @keydown.space.prevent="handleRemoveMedicine($index)"
           >
             删除
           </el-button>
@@ -73,33 +169,22 @@
       </el-table-column>
     </el-table>
 
-    <!-- 药品录入区域 -->
+    <!-- 添加药品按钮 -->
     <div class="medicine-input-section">
       <el-button 
         type="primary" 
-        @click="showMedicineDialog"
-        :tabindex="0"
-        @keydown.enter="showMedicineDialog"
-        @keydown.space.prevent="showMedicineDialog"
+        @click="addNewMedicine"
+        icon="Plus"
       >
-        录入药品 (Alt+I)
+        添加药品 (Alt+I)
       </el-button>
     </div>
-
-
-
-    <!-- 药品录入对话框 -->
-    <MedicineDialog 
-      v-model:visible="dialogVisible" 
-      @confirm="handleMedicineConfirm"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import type { PrescriptionForm, Medicine } from '../types/prescription'
-import MedicineDialog from './MedicineDialog.vue'
 
 const props = defineProps<{
   form: PrescriptionForm
@@ -109,9 +194,6 @@ const emit = defineEmits<{
   addMedicine: []
   removeMedicine: [index: number]
 }>()
-
-// 对话框显示状态
-const dialogVisible = ref(false)
 
 // 计算总剂量合计
 const totalQuantitySum = computed(() => {
@@ -129,6 +211,7 @@ const tableDataWithTotal = computed(() => {
     sequence: 0,
     name: '',
     chineseName: '',
+    mnemonicCode: '',
     specification: '',
     singleDose: '',
     totalAmount: '',
@@ -141,33 +224,45 @@ const tableDataWithTotal = computed(() => {
   return medicines
 })
 
+// 添加新药品
+const addNewMedicine = () => {
+  const newMedicine: Medicine = {
+    sequence: props.form.medicines.length + 1,
+    name: '',
+    chineseName: '',
+    mnemonicCode: '',
+    specification: '',
+    singleDose: '',
+    totalAmount: '',
+    totalQuantity: '',
+    unit: 'g',
+    usage: '常规',
+    unitPrice: ''
+  }
+  props.form.medicines.push(newMedicine)
+}
 
-
-const showMedicineDialog = () => {
-  dialogVisible.value = true
+// 更新药品信息
+const updateMedicine = (index: number) => {
+  // 这里可以添加自动计算逻辑，比如根据单剂量和贴数计算总剂量
+  const medicine = props.form.medicines[index]
+  if (medicine.singleDose && medicine.totalAmount) {
+    const singleDose = parseFloat(medicine.singleDose) || 0
+    const totalAmount = parseFloat(medicine.totalAmount) || 0
+    medicine.totalQuantity = (singleDose * totalAmount).toString()
+  }
 }
 
 const handleRemoveMedicine = (index: number) => {
   emit('removeMedicine', index)
 }
 
-// 处理药品录入确认
-const handleMedicineConfirm = (medicines: Medicine[]) => {
-  // 为每个药品设置正确的序号
-  medicines.forEach((medicine, index) => {
-    medicine.sequence = props.form.medicines.length + index + 1
-  })
-  
-  // 添加药品到表格
-  props.form.medicines.push(...medicines)
-}
-
 // 键盘事件处理
 const handleKeyDown = (event: KeyboardEvent) => {
-  // Alt + I 键打开药品录入对话框
+  // Alt + I 键添加新药品
   if (event.altKey && event.key === 'i') {
     event.preventDefault()
-    showMedicineDialog()
+    addNewMedicine()
   }
   // Alt + D 键删除最后一个药品
   if (event.altKey && event.key === 'd') {
@@ -198,45 +293,18 @@ onUnmounted(() => {
 .medicine-input-section {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 10px 0;
+  margin-top: 10px;
 }
 
-.shortcut-tips {
-  /* 移除flex: 1，让文字不占据全部剩余空间 */
+:deep(.el-input__inner) {
+  height: 28px;
 }
 
-.tip-text {
-  color: #E6A23C;
-  font-size: 14px;
-  background-color: #FDF6EC;
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid #F5DAB1;
+:deep(.el-select) {
+  width: 100%;
 }
 
-.total-section {
-  text-align: right;
-  font-size: 16px;
-  font-weight: bold;
-  color: #E6A23C;
-  padding: 10px 0;
-  border-top: 1px solid #EBEEF5;
-}
-
-:deep(.el-table) {
-  border-radius: 4px;
-}
-
-:deep(.el-table th) {
-  background-color: #F5F7FA;
-  color: #909399;
-  font-weight: 500;
-}
-
-:deep(.el-divider__text) {
-  font-weight: 500;
-  color: #409EFF;
+:deep(.el-table .el-table__cell) {
+  padding: 4px 0;
 }
 </style> 

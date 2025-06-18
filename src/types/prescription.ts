@@ -3,6 +3,7 @@ export interface Medicine {
   sequence: number
   name: string
   chineseName: string
+  mnemonicCode: string
   specification: string
   singleDose: string
   totalAmount: string
