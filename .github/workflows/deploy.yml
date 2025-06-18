@@ -24,9 +24,10 @@ jobs:
       run: npm ci
       
     - name: Build
-      run: npm run build
-      env:
-        NODE_ENV: production
+      run: |
+        npm run build
+        # 修复GitHub Pages的路径问题
+        sed -i 's|="/assets/|="/medical-prescription-form/assets/|g' dist/index.html
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
