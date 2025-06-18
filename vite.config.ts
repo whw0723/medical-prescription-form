@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: './',
+  base: process.env.NODE_ENV === 'production' ? '/medical-prescription-form/' : '/',
   resolve: {
     alias: {
       '@': '/src'
